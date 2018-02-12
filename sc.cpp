@@ -81,7 +81,7 @@ int sc_memorySave (char * filename)
 	
 	if (f == NULL)
 	{
-		printf("Error opening file for writing");
+		printf("Error opening file for writing\n");
 		
 	}
 	
@@ -97,7 +97,7 @@ int sc_memoryLoad (char * filename)
 	
 	if (f == NULL)
 	{
-		printf("Error opening file for reading");
+		printf("Error opening file for reading\n");
 		exit(1);
 	}
 	
@@ -109,10 +109,9 @@ int sc_memoryLoad (char * filename)
 
 int sc_regSet (int reg, int value)
 {
-
 	if (value > 1 || value < 0)
 	{
-		printf("Incorrect value");
+		printf("Incorrect value\n");
 		return 1;
 	}
 	else{
@@ -153,16 +152,13 @@ int sc_regSet (int reg, int value)
 				break;
 			}
 			default:{
-				printf("Incorrect register number");
+				printf("Incorrect register number\n");
 				return 1;
 				break;
 			}
 		}
 	return 0;	
 	}
-	
-
-	
 	return 0;
 }
 
@@ -170,38 +166,39 @@ int sc_regGet (int reg, int * value)
 {
 	if ((reg <=0) || reg > bits(flags))
 	{
-		printf("Incorrect register number");
+		printf("Incorrect register number\n");
 
 	}
 	*value = (flags >> (reg-1)) & 0x1;
 	return 0;
 }
+
 int sc_commandEncode (int command, int operand, int * value)
 {
-if((command>=10 && command<=11)||(command>=20 && command<=21)||(command>=30 && command<=33)||(command>=40 && command<=43)||(command>=51 && command<=76)|| operand<=127)
+	if((command>=10 && command<=11)||(command>=20 && command<=21)||(command>=30 && command<=33)||(command>=40 && command<=43)||(command>=51 && command<=76)|| operand<=127)
 	{
 		*value=command;
 		*value<<=(7);
 		*value=*value^operand;
 	}
 	else {
-		printf("Error");
+		printf("Error\n");
 		return 1;
 	}
+	return 0;
 }
+
 int sc_commandDecode (int value, int * command, int * operand)
 {
 	*operand=value&0x7F; 
 	*command=(value&0x3F80)>>7; 
 	if(!((*command>=10 && *command<=11)||(*command>=20 && *command<=21)||(*command>=30 && *command<=33)||(*command>=40 && *command<=43)||(*command>=51 && *command<=76)||((value>>14)==1))){
 		flags=flags | (1<<(5-1));	
-		printf("Error command");
+		printf("Error command\n");
 	}
-	
-		
-
-return 0;	
+	return 0;	
 }
+
 int main()
 {
 	sc_memoryInit();
@@ -248,8 +245,8 @@ int main()
 	sc_regGet(1, &value);
 	printf("%d\n", value);
 	flagsView();
-sc_regInit();
-int value=5,command=5, operand=6;
+	sc_regInit();
+	int value=5,command=5, operand=6;
 
 //	for (int j=16; j >= 1; j--)
 //	{
