@@ -12,7 +12,9 @@ const int N = 100;
 
 int ram[N-1];
 unsigned char flags;
+
 unsigned char k = 3;
+
 int value;
 
 int sc_memoryInit ()
@@ -107,6 +109,7 @@ int sc_memoryLoad (char * filename)
 
 int sc_regSet (int reg, int value)
 {
+
 	if (value > 1 || value < 0)
 	{
 		printf("Incorrect value");
@@ -158,6 +161,7 @@ int sc_regSet (int reg, int value)
 	return 0;	
 	}
 	
+
 	
 	return 0;
 }
@@ -167,7 +171,7 @@ int sc_regGet (int reg, int * value)
 	if ((reg <=0) || reg > bits(flags))
 	{
 		printf("Incorrect register number");
-		
+
 	}
 	*value = (flags >> (reg-1)) & 0x1;
 	return 0;
@@ -206,6 +210,7 @@ int main()
 	sc_regSet (1, 1);
 	flagsView();
 	
+
 	sc_regSet (1, 0);
 	flagsView();
 	 
@@ -214,6 +219,7 @@ int main()
 	
 	sc_regSet (10, 0);
 	flagsView();
+
 	sc_regGet(1, &value);
 	printf("%d\n", value);
 	flagsView();
