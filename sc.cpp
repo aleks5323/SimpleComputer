@@ -28,7 +28,7 @@ int sc_memoryInit ()
 
 void flagsView()
 {
-	for (int j=1; j <= bits(flags); j++)
+	for (int j= bits(flags); j>=1 ; j--)
 	{
 		printf("%d", (flags>>(j-1))& 0x1);
 	}
@@ -82,7 +82,7 @@ int sc_memorySave (char * filename)
 	if (f == NULL)
 	{
 		printf("Error opening file for writing");
-		exit(1);
+		
 	}
 	
 	fwrite(ram, 1, sizeof(ram), f);
@@ -176,7 +176,32 @@ int sc_regGet (int reg, int * value)
 	*value = (flags >> (reg-1)) & 0x1;
 	return 0;
 }
+int sc_commandEncode (int command, int operand, int * value)
+{
+if((command>=10 && command<=11)||(command>=20 && command<=21)||(command>=30 && command<=33)||(command>=40 && command<=43)||(command>=51 && command<=76)|| operand<=127)
+	{
+		*value=command;
+		*value<<=(7);
+		*value=*value^operand;
+	}
+	else {
+		printf("Error");
+		return 1;
+	}
+}
+int sc_commandDecode (int value, int * command, int * operand)
+{
+	*operand=value&0x7F; 
+	*command=(value&0x3F80)>>7; 
+	if(!((*command>=10 && *command<=11)||(*command>=20 && *command<=21)||(*command>=30 && *command<=33)||(*command>=40 && *command<=43)||(*command>=51 && *command<=76)||((value>>14)==1))){
+		flags=flags | (1<<(5-1));	
+		printf("Error command");
+	}
+	
+		
 
+return 0;	
+}
 int main()
 {
 	sc_memoryInit();
@@ -223,7 +248,22 @@ int main()
 	sc_regGet(1, &value);
 	printf("%d\n", value);
 	flagsView();
-	
-	printf("\n");
+sc_regInit();
+int value=5,command=5, operand=6;
+
+//	for (int j=16; j >= 1; j--)
+//	{
+//		printf("%d", (value>>(j-1))& 0x1);
+//	}
+//	
+	sc_commandEncode (75, 6, &value);
+	sc_commandDecode (value, &command, &operand);
+	printf("\n%d_%d\n",command, operand);
+		flagsView();
+		
+			sc_commandEncode (10, 500, &value);
+	sc_commandDecode (value, &command, &operand);
+	printf("\n%d_%d\n",command, operand);
+		flagsView();
 	return 0;
 }
