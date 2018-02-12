@@ -1,9 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
+#define OVERFILL_MASK 0x01			//шестнадцатеричный литерал для 0000 0001
+#define ZERO_MASK 0x02				//шестнадцатеричный литерал для 0000 0010
+#define OUT_OF_MEMORY_MASK 0x04 	//шестнадцатеричный литерал для 0000 0100
+#define IMPULSE_IGNORE_MASK 0x08 	//шестнадцатеричный литерал для 0000 1000
+#define CMD_ERROR_MASK 0x10 		//шестнадцатеричный литерал для 0001 0000
+#define bits(of) (int)sizeof(of)*CHAR_BIT
+
 const int N = 100;
 
 int ram[N-1];
-int flags;
+unsigned char flags;
 unsigned char k = 1;
 int value;
 
@@ -18,7 +26,7 @@ int sc_memoryInit ()
 
 void flagsView()
 {
-	for (int j=1; j < 32; j++)
+	for (int j=1; j <= bits(flags); j++)
 	{
 		printf("%d", flags>>(j-1));
 	}
@@ -58,7 +66,7 @@ int sc_memoryGet (int address, int * value)
 
 int sc_regInit()
 {
-	for (int j=1; j < 32; j++)
+	for (int j=1; j <= bits(flags); j++)
 	{
 		flags = flags>>(j-1)&0x0;
 	}
@@ -97,13 +105,24 @@ int sc_memoryLoad (char * filename)
 	return 0;
 }
 
-/*int sc_regSet (int register, int value)
+int sc_regSet (int reg, int value)
 {
-	if ()
-}*/
+	if ((reg <=0) || reg > bits(flags))
+	{
+		printf("Incorrect register number");
+		exit(1);
+	}
+	
+	return 0;
+}
 
 int sc_regGet (int reg, int * value)
 {
+	if ((reg <=0) || reg > bits(flags))
+	{
+		printf("Incorrect register number");
+		exit(1);
+	}
 	*value = (flags >> (reg-1)) & 0x1;
 	return 0;
 }
@@ -139,7 +158,9 @@ int main()
 	sc_memoryGet(15, &value);
 	printf("%d ", value);*/
 	
-	
+	sc_regGet(1, &value);
+	printf("%d\n", value);
+	flagsView();
 	
 	printf("\n");
 	return 0;
