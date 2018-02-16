@@ -44,15 +44,15 @@ int sc_memorySet (int address, int value)
 	if (address < N && address >= 0)
 	{
 		ram[address] = value;
-		printf("Ja GUT: %d\n", ram[address]);
+		printf("Ja GUT: [%d] => %d\n", address, ram[address]);
 		return 0;
 	}
 	else
 	{
 		flags=flags | (1<<(k-1));
-		printf(ANSI_COLOR_RED);									//Color
-		printf("Out of range: [%d]=[%d]\n", address, value); 	//Color
-		printf(ANSI_COLOR_RESET);								//Color
+		printf(ANSI_COLOR_RED);											//Color
+		printf("Out of range: [%d] \u2260> [%d]\n", value, address); 	//Color
+		printf(ANSI_COLOR_RESET);										//Color
 		return 1;
 	}
 	return 0;
@@ -76,10 +76,7 @@ int sc_memoryGet (int address, int * value)
 
 int sc_regInit()
 {
-	for (int j=1; j <= bits(flags); j++)
-	{
-		flags = flags>>(j-1)&0x0;
-	}
+	flags&=0x0;
 	printf(ANSI_COLOR_GREEN "Registers has been successfully initialized.\n" ANSI_COLOR_RESET); //Delete this line later
 	return 0;
 }
@@ -91,13 +88,11 @@ int sc_memorySave (char * filename)
 	if (f == NULL)
 	{
 		printf(ANSI_COLOR_RED "Error opening file for writing\n" ANSI_COLOR_RESET); //Color
-		
+		return 1;
 	}
-	
 	fwrite(ram, 1, sizeof(ram), f);
 	printf(ANSI_COLOR_YELLOW "Memory has been successfully saved\n" ANSI_COLOR_RESET);
 	fclose (f);
-	
 	return 0;
 }
 
@@ -108,13 +103,12 @@ int sc_memoryLoad (char * filename)
 	if (f == NULL)
 	{
 		printf(ANSI_COLOR_RED "Error opening file for reading\n" ANSI_COLOR_RESET); //Color
-		exit(1);
+		return 1;
 	}
 	
 	fread(ram, 1, sizeof(ram), f);
 	printf(ANSI_COLOR_YELLOW "Memory has been successfully loaded\n" ANSI_COLOR_RESET);
 	fclose (f);
-	
 	return 0;
 }
 
@@ -178,7 +172,7 @@ int sc_regGet (int reg, int * value)
 	if ((reg <=0) || reg > bits(flags))
 	{
 		printf(ANSI_COLOR_RED "Incorrect register number\n" ANSI_COLOR_RESET); //Color
-
+		return 1;
 	}
 	*value = (flags >> (reg-1)) & 0x1;
 	return 0;
@@ -193,7 +187,7 @@ int sc_commandEncode (int command, int operand, int * value)
 		*value=*value^operand;
 	}
 	else {
-		printf(ANSI_COLOR_RED "Error\n" ANSI_COLOR_RESET); //Color
+		printf(ANSI_COLOR_RED "Error encoding command\n" ANSI_COLOR_RESET); //Color
 		return 1;
 	}
 	return 0;
@@ -205,7 +199,8 @@ int sc_commandDecode (int value, int * command, int * operand)
 	*command=(value&0x3F80)>>7; 
 	if(!((*command>=10 && *command<=11)||(*command>=20 && *command<=21)||(*command>=30 && *command<=33)||(*command>=40 && *command<=43)||(*command>=51 && *command<=76)||((value>>14)==1))){
 		flags=flags | (1<<(5-1));	
-		printf(ANSI_COLOR_RED "Error command\n" ANSI_COLOR_RESET); //Color
+		printf(ANSI_COLOR_RED "Wrong command\n" ANSI_COLOR_RESET); //Color
+		return 1;
 	}
-	return 0;	
+	return 0;
 }

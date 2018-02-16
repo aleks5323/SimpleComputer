@@ -13,6 +13,6 @@ echo -e "\e[31m\e[1mWould you like to clean up the mess?"
 read -p "y/n: " a
 case $a in
 	y|Y) make -s clean ; clear ;;
-	n|N) break ;;
+	n|N) exit ;;
 	*) jumpto clean ;;
 esac

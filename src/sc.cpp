@@ -20,7 +20,7 @@ int main()
 	
 	//Работа с чтением и записью памяти в файл
 	
-	sc_memorySave((char*)"memory.dat");
+	sc_memorySave((char*)"bin/memory.dat");
 	sc_memoryInit();
 	sc_memoryGet(10, &value);
 	printf("%d ", value);
@@ -29,7 +29,7 @@ int main()
 	sc_memoryGet(15, &value);
 	printf("%d \n", value);
 	
-	sc_memoryLoad((char*)"memory.dat");
+	sc_memoryLoad((char*)"bin/memory.dat");
 	
 	sc_memoryGet(10, &value);
 	printf("%d ", value);
@@ -74,7 +74,7 @@ int main()
 	
 	sc_commandEncode (10, 500, &value);
 	sc_commandDecode (value, &command, &operand);
-	printf("\n%d_%d\n",command, operand);
+	printf("%d_%d\n",command, operand);
 	flagsView();
 	return 0;
 }
