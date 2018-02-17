@@ -11,6 +11,7 @@ make -s
 clean:
 echo -e "\e[31m\e[1mWould you like to clean up the mess?"
 read -p "y/n: " a
+echo -e "\e[0m"
 case $a in
 	y|Y) make -s clean ; clear ;;
 	n|N) exit ;;

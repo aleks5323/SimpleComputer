@@ -17,7 +17,6 @@
 const int N = 100;
 int ram[N-1];
 unsigned char flags;
-unsigned char k = 3;
 
 int sc_memoryInit ()
 {
@@ -49,7 +48,7 @@ int sc_memorySet (int address, int value)
 	}
 	else
 	{
-		flags=flags | (1<<(k-1));
+		flags|=OUT_OF_MEMORY_MASK;
 		printf(ANSI_COLOR_RED);											//Color
 		printf("Out of range: [%d] \u2260> [%d]\n", value, address); 	//Color
 		printf(ANSI_COLOR_RESET);										//Color
@@ -67,7 +66,7 @@ int sc_memoryGet (int address, int * value)
 	}
 	else
 	{
-		flags=flags | (1<<(k-1));
+		flags|=OUT_OF_MEMORY_MASK;
 		printf(ANSI_COLOR_RED "Out of range\n" ANSI_COLOR_RESET); //Color
 		return 1;
 	}
