@@ -1,20 +1,26 @@
+OBJ_FLDR=build/
+SRC_FLDR=src/
+BIN_FLDR=bin/
+OBJ_STR=$(OBJ_FLDR)lib.o $(OBJ_FLDR)sc.o $(OBJ_FLDR)myTerm.o
+OBJ_F=lib.o sc.o myTerm.o
+
 .PHONY: all clean
 
-all: lib.o sc.o myTerm.o
-	g++ build/lib.o build/sc.o -o bin/sc
+all: $(OBJ_F)
+	g++ $(OBJ_STR) -o $(BIN_FLDR)sc
 	echo "============PROGRAM STARTED============"
-	./bin/sc
+	./$(BIN_FLDR)sc
 	echo "=============PROGRAM  ENDED============"
 
-lib.o: src/lib.cpp
-	g++ -Wall -Werror -c src/lib.cpp -o build/lib.o
+lib.o: $(SRC_FLDR)lib.cpp
+	g++ -Wall -Werror -c $(SRC_FLDR)lib.cpp -o $(OBJ_FLDR)lib.o
 
-sc.o: src/sc.cpp
-	g++ -Wall -Werror -c src/sc.cpp -o build/sc.o
+sc.o: $(SRC_FLDR)sc.cpp
+	g++ -Wall -Werror -c $(SRC_FLDR)sc.cpp -o $(OBJ_FLDR)sc.o
 
-myTerm.o: src/myTerm.cpp
-	g++ -Wall -Werror -c src/myTerm.cpp -o build/myTerm.o
+myTerm.o: $(SRC_FLDR)myTerm.cpp
+	g++ -Wall -Werror -c $(SRC_FLDR)myTerm.cpp -o $(OBJ_FLDR)myTerm.o
 
 clean:
-	rm -rf build/*.o
-	rm -rf bin/*
+	rm -rf $(OBJ_FLDR)*.*
+	rm -rf $(BIN_FLDR)*
