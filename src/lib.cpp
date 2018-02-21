@@ -14,6 +14,8 @@
 #define ANSI_COLOR_RED     "\x1b[31m" //Delete this later
 #define ANSI_COLOR_RESET   "\x1b[0m" //Delete this later
 
+//enum colors {BLACK, RED, GREEN, BROWN, BLUE, LILAC, LIGHT_BLUE, WHITE};
+
 const int N = 100;
 int ram[N-1];
 unsigned char flags;
@@ -198,7 +200,7 @@ int sc_commandDecode (int value, int * command, int * operand)
 	*command=(value&0x3F80)>>7; 
 	if(!((*command>=10 && *command<=11)||(*command>=20 && *command<=21)||(*command>=30 && *command<=33)||(*command>=40 && *command<=43)||(*command>=51 && *command<=76)||((value>>14)==1))){
 		flags=flags | (1<<(5-1));	
-		printf(ANSI_COLOR_RED "Wrong command\n" ANSI_COLOR_RESET); //Color
+		printf(ANSI_COLOR_RED "Wrong command\n" ); //Color
 		return 1;
 	}
 	return 0;
