@@ -82,6 +82,6 @@ int main()
 	int rows, cols;
 	mt_getscreensize (&rows, &cols);
 	printf("Rows: %d\nCols: %d", rows, cols);*/
-	
+	enum {black,red,green,yellow,	blue,purple,aquamarine,white}colors;
 	return 0;
 }
