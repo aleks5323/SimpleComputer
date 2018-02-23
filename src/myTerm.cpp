@@ -5,7 +5,6 @@
 #include <iostream>
 
 using namespace std;
-//enum colors{black,red,green,yellow,	blue,purple,aquamarine,white};
 
 void mt_clrscr (void)
 {
@@ -24,7 +23,6 @@ int mt_gotoXY (int row, int col)
 	
 }
 
-
 int mt_getscreensize (int * rows, int * cols)
 {
 	try{
@@ -37,14 +35,13 @@ int mt_getscreensize (int * rows, int * cols)
 	catch(...){
 		return -1;
 	}
-	
 }
 
 int mt_setfgcolor (colors color)
 {
-		try{
-		printf("\e[4%dm",color);
-		return 0;
+	try{
+	printf("\e[4%dm",color);
+	return 0;
 	}
 	catch(...){
 		return -1;
@@ -53,9 +50,9 @@ int mt_setfgcolor (colors color)
 
 int mt_setbgcolor (colors color)
 {
-		try{
-		printf("\e[3%dm", color);
-		return 0;
+	try{
+	printf("\e[3%dm", color);
+	return 0;
 	}
 	catch(...){
 		return -1;

@@ -15,8 +15,6 @@
 #define ANSI_COLOR_RED     "\x1b[31m" //Delete this later
 #define ANSI_COLOR_RESET   "\x1b[0m" //Delete this later
 
-//enum colors {BLACK, RED, GREEN, BROWN, BLUE, LILAC, LIGHT_BLUE, WHITE};
-
 const int N = 100;
 int ram[N-1];
 unsigned char flags;

@@ -79,11 +79,13 @@ int main()
 	flagsView();
 	mt_clrscr();
 	mt_gotoXY (5, 10);
+	printf("Text at position 5 10\n");
 	int rows, cols;
 	mt_getscreensize (&rows, &cols);
-	printf("Rows: %d\nCols: %d", rows, cols);
-	mt_setfgcolor (green);
-	mt_setbgcolor (purple);
-	//enum {black,red,green,yellow,	blue,purple,aquamarine,white}colors;
+	printf("Rows: %d\nCols: %d\n", rows, cols);
+	mt_setfgcolor (white);
+	mt_setbgcolor (aquamarine);
+	printf("Aquamarine text on white backgroud\n");
+	printf("\e[0m");
 	return 0;
 }
