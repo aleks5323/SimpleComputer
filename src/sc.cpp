@@ -77,11 +77,13 @@ int main()
 	sc_commandDecode (value, &command, &operand);
 	printf("%d_%d\n",command, operand);
 	flagsView();
-	//*mt_clrscr();
-	/*mt_gotoXY (5, 10);
+	mt_clrscr();
+	mt_gotoXY (5, 10);
 	int rows, cols;
 	mt_getscreensize (&rows, &cols);
-	printf("Rows: %d\nCols: %d", rows, cols);*/
-	enum {black,red,green,yellow,	blue,purple,aquamarine,white}colors;
+	printf("Rows: %d\nCols: %d", rows, cols);
+	mt_setfgcolor (green);
+	mt_setbgcolor (purple);
+	//enum {black,red,green,yellow,	blue,purple,aquamarine,white}colors;
 	return 0;
 }

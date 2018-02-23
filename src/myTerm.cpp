@@ -1,6 +1,11 @@
+#include <signal.h>
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include "myTerm.h"
+#include <iostream>
+
+using namespace std;
+//enum colors{black,red,green,yellow,	blue,purple,aquamarine,white};
 
 void mt_clrscr (void)
 {
@@ -13,11 +18,12 @@ int mt_gotoXY (int row, int col)
 		printf("\e[%d;%dH", row, col);
 		return 0;
 	}
-	catch(){
+	catch(...){
 		return -1;
 	}
 	
 }
+
 
 int mt_getscreensize (int * rows, int * cols)
 {
@@ -28,30 +34,30 @@ int mt_getscreensize (int * rows, int * cols)
 	*cols = w.ws_col;
 	return 0;
 	}
-	catch(){
+	catch(...){
 		return -1;
 	}
 	
 }
 
-int mt_setfgcolor (enum colors)
+int mt_setfgcolor (colors color)
 {
 		try{
-		printf("\E[4%d%dm", colors);
+		printf("\e[4%dm",color);
 		return 0;
 	}
-	catch(){
+	catch(...){
 		return -1;
 	}
 }
 
-int mt_setbgcolor (enum colors)
+int mt_setbgcolor (colors color)
 {
 		try{
-		printf("\E[3%d%dm", colors);
+		printf("\e[3%dm", color);
 		return 0;
 	}
-	catch(){
+	catch(...){
 		return -1;
 	}
 }
