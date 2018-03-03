@@ -1,7 +1,7 @@
 #ifndef myBigChars_H
 #define myBigChars_H
 #include "myTerm.h"
-enum colors {black, red, green, yellow, blue, purple, aquamarine, white};
+
 int bc_printA (char * str);
 int bc_box(int x1, int y1, int x2, int y2);
 int bc_printbigchar(int *big, int x, int y,colors fgcolor, colors bgcolor);
