@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib.h"
-#include "myTerm.h"
-
+///#include "myTerm.h"
+#include "myBigChars.h"
 int value;
 
 int main()
@@ -87,5 +87,10 @@ int main()
 	mt_setbgcolor (aquamarine);
 	printf("Aquamarine text on white backgroud\n");
 	printf("\e[0m");
+
+	bc_printA ((char*)"l");
+	bc_box(1, 7, 7, 8);
+	int big[2]={0x79858579,0x79858585};
+	bc_printbigchar(big, 5, 5,red, black);
 	return 0;
 }

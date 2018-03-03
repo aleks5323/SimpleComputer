@@ -19,22 +19,23 @@ int bc_box(int x1, int y1, int x2, int y2)
         for (int j = 0; j < x2; j++) {
             mt_gotoXY(x1 + j, y1 + i);
             if (i == 0 && j == 0)
-                bc_printA("l");
+                bc_printA((char*)"l");
             else if (i == 0 && j == x2 - 1)
-                bc_printA("k\n");
+                bc_printA((char*)"m\n");
             else if (i == y2 - 1 && j == 0)
-                bc_printA("m");
+                bc_printA((char*)"k");
             else if (i == y2 - 1 && j == x2 - 1)
-                bc_printA("j");
+                bc_printA((char*)"j");
             else if ((i == 0 || i == y2 - 1) && j > 0 && j < x2 - 1)
-                bc_printA("q");
+                bc_printA((char*)"x");
             else if (i > 0 && i < y2 - 1 && j == 0)
-                bc_printA("x");
+                bc_printA((char*)"q");
             else if (i > 0 && i < y2 - 1 && j == x2 - 1)
-                bc_printA("x\n");
+                bc_printA((char*)"q\n");
             else
                 printf(" ");
         }
+       return 0;
 }
 int bc_printbigchar(int *big, int x, int y,colors fgcolor, colors bgcolor)
 {
@@ -42,13 +43,13 @@ int bc_printbigchar(int *big, int x, int y,colors fgcolor, colors bgcolor)
     mt_setbgcolor(bgcolor);
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            mt_gotoXY(x + j, y + i);
+            mt_gotoXY(x + i, y + j);
             int value;
             bc_getbigcharpos(big, j, i, &value);
             if (!value)
                 write(1, " ", 1);
             else
-                bc_printA("a");
+                bc_printA((char*)"a");
         }
         write(1, "\n", 1);
     }
