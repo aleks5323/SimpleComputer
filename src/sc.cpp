@@ -87,11 +87,11 @@ int main()
 	mt_setbgcolor (aquamarine);
 	printf("Aquamarine text on white backgroud\n");
 	printf("\e[0m");*/
-
+	
 	//bc_printA ((char*)"l");
 	bc_box(1, 1, 10, 10);
 	//int big[2]={0x79858579,0x79858585};
-	int big[2]=D_PLUS;
+	//int big[2]=D_PLUS;
 	bc_printbigchar(big, 2, 2,red, white);
 	return 0;
 }
