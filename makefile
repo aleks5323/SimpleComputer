@@ -9,9 +9,7 @@ TESTS=binFldr buildFldr
 
 all: $(TESTS) $(OBJ_F)
 	g++ $(OBJ_STR) -o $(BIN_FLDR)sc
-	echo -e "\n============PROGRAM STARTED============\n"
 	./$(BIN_FLDR)sc
-	echo -e "\n=============PROGRAM  ENDED============\n"
 
 lib.o: $(SRC_FLDR)lib.cpp
 	g++ -Wall -Werror -c $(SRC_FLDR)lib.cpp -o $(OBJ_FLDR)lib.o

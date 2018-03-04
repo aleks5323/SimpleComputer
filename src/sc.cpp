@@ -78,7 +78,7 @@ int main()
 	printf("%d_%d\n",command, operand);
 	flagsView();
 	mt_clrscr();
-	mt_gotoXY (5, 10);
+	/*mt_gotoXY (5, 10);
 	printf("Text at position 5 10\n");
 	int rows, cols;
 	mt_getscreensize (&rows, &cols);
@@ -86,11 +86,12 @@ int main()
 	mt_setfgcolor (white);
 	mt_setbgcolor (aquamarine);
 	printf("Aquamarine text on white backgroud\n");
-	printf("\e[0m");
+	printf("\e[0m");*/
 
-	bc_printA ((char*)"l");
-	bc_box(1, 7, 7, 8);
-	int big[2]={0x79858579,0x79858585};
-	bc_printbigchar(big, 5, 5,red, black);
+	//bc_printA ((char*)"l");
+	bc_box(1, 1, 10, 10);
+	//int big[2]={0x79858579,0x79858585};
+	int big[2]=D_PLUS;
+	bc_printbigchar(big, 2, 2,red, white);
 	return 0;
 }

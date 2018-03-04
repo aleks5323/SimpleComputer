@@ -8,8 +8,8 @@ function jumpto
 }
 make -s
 
-clean:
-echo -e "\e[31m\e[1mWould you like to clean up the mess?"
+clean
+echo -e "\n\n\n\e[31m\e[1mWould you like to clean up the mess?"
 read -p "y/n: " a
 echo -e "\e[0m"
 case $a in
