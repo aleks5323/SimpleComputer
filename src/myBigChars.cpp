@@ -128,3 +128,9 @@ int bc_bigcharread(int fd, int *big, int need_count, int *count)
     }
     return 0;
 }
+
+void getCharCode(int number, int *big)
+{
+	big[0]=digits[number][0];
+	big[1]=digits[number][1];
+}

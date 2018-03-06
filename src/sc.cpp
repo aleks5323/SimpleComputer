@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib.h"
-///#include "myTerm.h"
 #include "myBigChars.h"
 int value;
 
@@ -91,7 +90,11 @@ int main()
 	//bc_printA ((char*)"l");
 	bc_box(1, 1, 10, 10);
 	//int big[2]={0x79858579,0x79858585};
-	//int big[2]=D_PLUS;
+	
+	int big[2];
+	int c;
+	scanf("%d", &c);
+	getCharCode(c, big);
 	bc_printbigchar(big, 2, 2,red, white);
 	return 0;
 }
