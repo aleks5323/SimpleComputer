@@ -34,30 +34,35 @@ int bc_printA (char * str)
 
 }
 
-int bc_box(int x1, int y1, int x2, int y2)
+int bc_box ( int x1, int y1, int x2, int y2 )
 {
-	 for (int i = 0; i < y2; i++)
-        for (int j = 0; j < x2; j++) {
-            mt_gotoXY(x1 + j, y1 + i);
-            if (i == 0 && j == 0)
-                bc_printA((char*)"l");
-            else if (i == 0 && j == x2 - 1)
-                bc_printA((char*)"m\n");
-            else if (i == y2 - 1 && j == 0)
-                bc_printA((char*)"k");
-            else if (i == y2 - 1 && j == x2 - 1)
-                bc_printA((char*)"j");
-            else if ((i == 0 || i == y2 - 1) && j > 0 && j < x2 - 1)
-                bc_printA((char*)"x");
-            else if (i > 0 && i < y2 - 1 && j == 0)
-                bc_printA((char*)"q");
-            else if (i > 0 && i < y2 - 1 && j == x2 - 1)
-                bc_printA((char*)"q\n");
-            else
-                printf(" ");
-        }
-       return 0;
+	for (int i = 0; i < x2; i++)
+	{
+		for (int j = 0; j < y2; j++)
+		{
+			mt_gotoXY(x1 + i, y1 + j);
+			if (i == 0 && j == 0) bc_printA((char*)BOXCHAR_TL);
+			else if (i == 0 && j == y2 - 1)
+			{
+				bc_printA((char*)BOXCHAR_TR);
+				bc_printA((char*)"\n");
+			}
+			else if (i == x2 - 1 && j == 0)
+			bc_printA((char*)BOXCHAR_BL);
+			else if (i == x2 - 1 && j == y2 - 1)
+			{
+				bc_printA((char*)BOXCHAR_BR);
+				bc_printA((char*)"\n");
+			}
+			else if ((i == 0 || i == x2 - 1) && (j > 0 && j < y2))
+			bc_printA((char*)BOXCHAR_HOR);
+			else if ((i > 0 && i < x2) && (j == 0 || j == y2 -1))
+			bc_printA((char*)BOXCHAR_VERT);
+		}
+	}
+	return 0;
 }
+
 int bc_printbigchar(int *big, int x, int y,colors fgcolor, colors bgcolor)
 {
     mt_setfgcolor(fgcolor);
