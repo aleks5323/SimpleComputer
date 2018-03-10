@@ -4,6 +4,29 @@
 #include "myBigChars.h"
 int value;
 
+void printBoxes()
+{
+	bc_box(1, 1, 12, 60);
+	bc_box(1, 61, 3, 68);
+	bc_box(4, 61, 3, 68);
+	bc_box(7, 61, 3, 68);
+	bc_box(10, 61, 3, 68);
+}
+
+void printLabels()
+{
+	mt_gotoXY(1, 28);
+	printf("Memory");
+	mt_gotoXY(1, 66);
+	printf("accumulator");
+	mt_gotoXY(4, 66);
+	printf("instrCount");
+	mt_gotoXY(7, 66);
+	printf("Operation");
+	mt_gotoXY(10, 66);
+	printf("Flags");
+}
+
 int main()
 {
 	sc_memoryInit();
@@ -96,5 +119,10 @@ int main()
 	scanf("%d", &c);
 	getCharCode(c, big);
 	bc_printbigchar(big, 2, 2,red, white);
+	mt_clrscr();
+	
+	printBoxes();
+	printLabels();
+	
 	return 0;
 }

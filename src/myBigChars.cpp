@@ -75,7 +75,7 @@ int bc_printbigchar(int *big, int x, int y,colors fgcolor, colors bgcolor)
             if (!value)
                 write(1, " ", 1);
             else
-                bc_printA((char*)"a");
+                bc_printA((char*)BOXCHAR_REC);
         }
         write(1, "\n", 1);
     }
