@@ -130,14 +130,14 @@ int main()
 	printf("\e[0m");*/
 	
 	//bc_printA ((char*)"l");
-	//*bc_box(1, 1, 10, 10);
+	bc_box(1, 1, 10, 10);
 	//int big[2]={0x79858579,0x79858585};
 	
 	/*int big[2];
 	int c;
 	scanf("%d", &c);
 	getCharCode(c, big);
-	bc_printbigchar(big, 2, 2,red, white);
+	bc_printbigchar(big, 2, 2, clr_default, clr_default);
 	mt_clrscr();*/
 	
 	printBoxes();

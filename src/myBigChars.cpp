@@ -77,10 +77,9 @@ int bc_printbigchar(int *big, int x, int y,colors fgcolor, colors bgcolor)
             else
                 bc_printA((char*)BOXCHAR_REC);
         }
-        write(1, "\n", 1);
+		mt_setbgcolor(clr_default);
+		mt_setfgcolor(clr_default);
     }
-    mt_setbgcolor(black);
-    mt_setfgcolor(white);
     return 0;
 }
 

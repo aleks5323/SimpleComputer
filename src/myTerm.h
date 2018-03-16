@@ -1,7 +1,7 @@
 #ifndef myTerm_H
 #define myTerm_H
 
-enum colors {black, red, green, yellow, blue, purple, aquamarine, white};
+enum colors {black, red, green, yellow, blue, purple, aquamarine, white, clr_default};
 void mt_clrscr (void);
 int mt_gotoXY (int row, int col);
 int mt_getscreensize (int * rows, int * cols);
