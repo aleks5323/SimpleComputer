@@ -1,6 +1,10 @@
 #ifndef lib_H
 #define lib_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
 int sc_memoryInit();
 void flagsView();
 int sc_memorySet (int address, int value);

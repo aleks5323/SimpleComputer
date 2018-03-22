@@ -1,6 +1,10 @@
 #ifndef myBigChars_H
 #define myBigChars_H
 #include "myTerm.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 
 #define BOXCHAR_REC  "a"
 #define BOXCHAR_BR   "j"

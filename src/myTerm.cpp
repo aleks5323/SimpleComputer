@@ -1,8 +1,4 @@
-#include <signal.h>
-#include <sys/ioctl.h>
-#include <stdio.h>
 #include "myTerm.h"
-#include <iostream>
 
 using namespace std;
 

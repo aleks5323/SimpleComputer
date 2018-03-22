@@ -1,6 +1,11 @@
 #ifndef myTerm_H
 #define myTerm_H
 
+#include <signal.h>
+#include <sys/ioctl.h>
+#include <stdio.h>
+#include <iostream>
+
 enum colors {black, red, green, yellow, blue, purple, aquamarine, white, clr_default};
 void mt_clrscr (void);
 int mt_gotoXY (int row, int col);

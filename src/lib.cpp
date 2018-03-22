@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
 #include "lib.h"
 #define OVERFILL_MASK 0x01			//шестнадцатеричный литерал для 0000 0001
 #define ZERO_MASK 0x02				//шестнадцатеричный литерал для 0000 0010

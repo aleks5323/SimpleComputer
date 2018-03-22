@@ -1,8 +1,4 @@
 #include "myBigChars.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
 
 int digits[18][2] = {
 	{0x2424243C, 0x3C242424},	//D_ZERO
