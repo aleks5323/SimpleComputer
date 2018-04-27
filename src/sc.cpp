@@ -30,6 +30,23 @@ void printLabels()
 	printf("Flags");
 	mt_gotoXY(13, 50);
 	printf("Keys:");
+
+	mt_gotoXY(14, 50);
+	printf(" l - load");
+	mt_gotoXY(15, 50);
+	printf(" s - save \n");
+	mt_gotoXY(16, 50);
+	printf(" r - run \n");
+	mt_gotoXY(17, 50);
+	printf(" t - step \n");
+	mt_gotoXY(18, 50);
+	printf(" i - reset \n");
+	mt_gotoXY(19, 50);
+	printf(" f5 - accumulator \n");
+	mt_gotoXY(20, 50);
+	printf(" f6 - counter \n");
+	
+
 }
 
 void printMemory()
@@ -51,8 +68,11 @@ int main()
 	sc_memoryInit();
 	sc_regInit();
 	
+	mt_clrscr();
+	
 	printBoxes();
 	printLabels();
+	
 	printMemory();
 	mt_gotoXY(24, 1);
 	
